@@ -1,3 +1,18 @@
-	 <div class="container row">
-           <h1>Hi, Welcome to your Dashboard</h1>
+<div class="container row">
+	<h1>Hi, Welcome to your Dashboard</h1>
+	<div class="grid-container">
+		<div class="item1">
+			{{> previousPost}}
+		</div>
+		<div class="item2">
+
+			<a href="" class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalPostForm">
+				<img class="minibox" src="/assets/images/confessGot.jpg" alt="GOT Confess Lady">
+				<h3>Click to Confess</h3>
+			</a>
+
+		</div>
+		{{> trueFalse}}
+
 	</div>
+</div>

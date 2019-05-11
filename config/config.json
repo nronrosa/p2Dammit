@@ -1,7 +1,7 @@
 {
     "development": {
-      "username": "trilogy2",
-      "password": "password123",
+      "username": "PracticeCode",
+      "password": "Maradona10!",
       "database": "confessions_db",
       "host": "127.0.0.1",
       "dialect": "mysql"
