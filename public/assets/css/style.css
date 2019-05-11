@@ -19,7 +19,7 @@ body {
   /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
   .row.content {height: 0px;}
 
-  .pastPosts{
+  .pastPosts {
     color: white;
     text-shadow: 1px 1px 2px black;
     /* width: 150px;
@@ -145,3 +145,4 @@ body {
   .card {
     box-shadow: 5px 5px 18px black;
   }
+  
