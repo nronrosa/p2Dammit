@@ -1,6 +1,102 @@
 
 $(document).ready(function () {
     /* global moment */
+    var previouscConfessionContainer = $(".previous-post");
+var previouscConfessions;
+function postPreviousConfession(){
+
+var loggedInUser = {
+    id: sessionStorage.getItem("UserId"),
+    username: sessionStorage.getItem("UserName"),
+    email: sessionStorage.getItem("UserEmail")
+}
+getRandomConfessions(loggedInUser);
+}
+postPreviousConfession();
+
+function getRandomConfessions(user) {
+    $.get("api/confessions", function (data) {
+        // console.log("Confessions", data);
+        confessions = data;
+        if (!confessions || !confessions.length) {
+            displayPreviousPostEmpty(user);
+        } else {
+            initializeRandomRows();
+        }
+    });
+}
+
+function initializeRandomRows() {
+    previouscConfessionContainer.empty();
+    var confessionsToAdd = [];
+    for (var i = 0; i < confessions.length; i++) {
+        confessionsToAdd.push(createPreviousPost(confessions[i]));
+    }
+    previouscConfessionContainer.append(confessionsToAdd);
+}
+
+function createPreviousPost(confession) {
+    var formattedDate = new Date(confession.createdAt);
+    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    var newConfessionCard = $("<div>");
+    newConfessionCard.addClass("card");
+    var newConfessionCardHeading = $("<div>");
+    newConfessionCardHeading.addClass("card-header");
+    var newConfessionTitle = $("<h2>");
+    var newConfessionDate = $("<small>");
+    var newConfessionUser = $("<h5>");
+    newConfessionUser.text("Written by: " + confession.User.username);
+    newConfessionUser.css({
+        float: "right",
+        color: "white",
+        "margin-top": "-10px"
+    });
+
+    var newConfessionCardBody = $("<div>");
+    newConfessionCardBody.addClass("card-body");
+    var newConfessionBody = $("<p>");
+    //   newConfessionTitle.text(confession.title + " ");
+    newConfessionBody.text(confession.body);
+    newConfessionDate.text(formattedDate);
+    newConfessionTitle.append(newConfessionDate);
+    newConfessionCardHeading.append(newConfessionTitle);
+    newConfessionCardHeading.append(newConfessionUser);
+    newConfessionCardBody.append(newConfessionBody);
+    newConfessionCard.append(newConfessionCardHeading);
+    newConfessionCard.append(newConfessionCardBody);
+    newConfessionCard.data("confession", confession);
+    // var trueBtn = $("<button>");
+    // trueBtn.text("true");
+    // trueBtn.addClass("true btn btn-danger trueFalseBtn");
+    // trueBtn.attr("data-confessionId", confession.id)
+    // trueBtn.val(true);
+    // var falseBtn = $("<button>");
+    // falseBtn.text("false");
+    // falseBtn.addClass("false btn btn-info trueFalseBtn");
+    // falseBtn.attr("data-confessionId", confession.id)
+    // falseBtn.val(false)
+    // newConfessionCardHeading.append(trueBtn);
+    // newConfessionCardHeading.append(" || ");
+    // newConfessionCardHeading.append(falseBtn);
+    return newConfessionCard;
+}
+
+// This function displays a message when there are no confessions
+function displayPreviousPostEmpty(user) {
+    var query = window.location.search;
+    var partial = "";
+    if (user.id) {
+        partial = " for User #" + user.id;
+    }
+    previouscConfessionContainer.empty();
+    var messageH2 = $("<h2>");
+    messageH2.css({
+        "text-align": "center",
+        "margin-top": "50px"
+    });
+    messageH2.html("No confessions yet");
+    previouscConfessionContainer.append(messageH2);
+}
 
 
 
@@ -54,6 +150,9 @@ $(document).ready(function () {
 
     }
 
+
+    
+
     // This function does an API call to delete confessions
     // function deleteConfession(id) {
     //   $.ajax({
@@ -66,22 +165,14 @@ $(document).ready(function () {
     // }
 
     // InitializeRows handles appending all of our constructed confession HTML inside confessionContainer
-    function initializeRows() {
-        confessionContainer.empty();
-        var confessionsToAdd = [];
-        for (var i = 0; i < confessions.length; i++) {
-            confessionsToAdd.push(createNewRow(confessions[i]));
-        }
-        confessionContainer.append(confessionsToAdd);
-    }
-
+    
     // This function constructs a confession's HTML
     // FACUNDO: code to write to dom 
     function createNewRow(confession) {
         var formattedDate = new Date(confession.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
         var newConfessionCard = $("<div>");
-          newConfessionCard.addClass("card");
+        newConfessionCard.addClass("card");
         var newConfessionCardHeading = $("<div>");
         newConfessionCardHeading.addClass("card-header");
 
@@ -95,8 +186,8 @@ $(document).ready(function () {
             "margin-top": "-10px"
         });
 
- 
-       
+
+
         var newConfessionCardBody = $("<div>");
         newConfessionCardBody.addClass("card-body");
         var newConfessionBody = $("<p>");
@@ -104,7 +195,7 @@ $(document).ready(function () {
         newConfessionBody.text(confession.body);
         newConfessionDate.text(formattedDate);
 
-        
+
         newConfessionTitle.append(newConfessionDate);
 
         //   newConfessionCardHeading.append(newConfessionTitle);
@@ -119,7 +210,7 @@ $(document).ready(function () {
         trueBtn.addClass("true btn btn-danger trueFalseBtn");
         trueBtn.attr("data-confessionId", confession.id)
         trueBtn.val(true);
-        
+
         var falseBtn = $("<button>");
         falseBtn.text("false");
         falseBtn.addClass("false btn btn-info trueFalseBtn");
@@ -131,7 +222,7 @@ $(document).ready(function () {
         newConfessionCardHeading.append(trueBtn);
         newConfessionCardHeading.append(" || ");
         newConfessionCardHeading.append(falseBtn);
-        
+
 
 
 
@@ -139,6 +230,18 @@ $(document).ready(function () {
         return newConfessionCard;
     }
 
+    function initializeRows() {
+        confessionContainer.empty();
+        var confessionsToAdd = [];
+        for (var i = 0; i < confessions.length; i++) {
+            confessionsToAdd.push(createNewRow(confessions[i]));
+        }
+        confessionContainer.append(confessionsToAdd);
+    }
+
+    // This function constructs a confession's HTML
+    // FACUNDO: code to write to dom 
+     
 
 
 
@@ -189,9 +292,9 @@ $(document).ready(function () {
     function handleFormSubmit(event) {
         event.preventDefault();
         console.log("hola");
-       var isItTrueInput= $("input[type='radio'][name='inlineRadioOptions']:checked").val();
+        var isItTrueInput = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
         // Wont submit the confession if we are missing a body, title, or user
-        if (!bodyInput.val().trim()||!isItTrueInput) {
+        if (!bodyInput.val().trim() || !isItTrueInput) {
             return;
         }
         // Constructing a newConfession object to hand to the database
@@ -293,22 +396,22 @@ $(document).ready(function () {
     }
 
 
-    $("#loginSubmit").on("click", function(){
+    $("#loginSubmit").on("click", function () {
         var username = $("#loginUserName").val();
         var password = $("#loginPassword").val();
 
         console.log(username, password)
 
         var login = {
-            username : username,
-            password : password
+            username: username,
+            password: password
         }
 
         $.ajax({
             method: "POST",
             url: "/login",
             data: login
-        }).then(function(data){
+        }).then(function (data) {
             window.location = "/dashboard"
             console.log(data)
 
