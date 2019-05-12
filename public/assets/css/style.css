@@ -6,7 +6,7 @@ body {
     background-attachment: fixed;
 }
 .navbar {
-    /* height: 30px; */
+     height: 300px; 
     margin-bottom: 0;
     border-radius: 0;
     background-color: rgba(66, 0, 92, 0.383);

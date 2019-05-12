@@ -3,9 +3,9 @@ $(document).ready(function() {
   var blogContainer = $(".blog-container");
   var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
-  $(document).on("click", "button.delete", handlePostDelete);
-  $(document).on("click", "button.edit", handlePostEdit);
-  postCategorySelect.on("change", handleCategoryChange);
+  // $(document).on("click", "button.delete", handlePostDelete);
+  // $(document).on("click", "button.edit", handlePostEdit);
+  // postCategorySelect.on("change", handleCategoryChange);
   var posts;
 
   // This function grabs posts from the database and updates the view
@@ -14,7 +14,7 @@ $(document).ready(function() {
     if (categoryString) {
       categoryString = "/category/" + categoryString;
     }
-    $.get("/api/posts" + categoryString, function(data) {
+    $.get("/api/confessions" + categoryString, function(data) {
       console.log("Posts", data);
       posts = data;
       if (!posts || !posts.length) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
   function deletePost(id) {
     $.ajax({
       method: "DELETE",
-      url: "/api/posts/" + id
+      url: "/api/confessions/" + id
     })
       .then(function() {
         getPosts(postCategorySelect.val());
@@ -109,7 +109,7 @@ $(document).ready(function() {
       .parent()
       .parent()
       .data("post");
-    window.location.href = "/cms?post_id=" + currentPost.id;
+    window.location.href = "/cms?user_id=" + currentPost.id;
   }
 
   // This function displays a message when there are no posts
