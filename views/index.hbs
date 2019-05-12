@@ -1,36 +1,54 @@
 <div class="container row">
 	<!-- Modal with form for posts -->
+
 	<div class="modal animated fadeInDown slower" id="modalPostForm" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Write a confession. It could be made up or true. Others will try and figure
+					<h5 class="modal-title">Write a confession. It could be made up or true. Others will try and
+						figure
 						out if it's real or not.</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label for="message-text" class="col-form-label">Write your confession here</label>
-						<textarea class="form-control" id="message-text"></textarea>
-					</div>
-					<label class="radio-inline">
-						<h5>Is this confession true or false?</h5>
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> True
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"> False
-					</label>
+					<form id="confess-submit">
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Ready to confess: {{userName}}
+								</label>
+							<textarea class="form-control" id="message-text" placeholdder="Write your confession here"></textarea>
+						</div>
+						<label class="radio-inline">
+							<h5>Is this confession true or false?</h5>
+							<input type="radio" class="confessSubmitTF" name="inlineRadioOptions" id="inlineRadio1"
+								value="1"> True
+						</label>
+						<label class="radio-inline">
+							<input type="radio" class="confessSubmitTF" name="inlineRadioOptions" id="inlineRadio2"
+								value="0"> False
+						</label>
 				</div>
+
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="submit" class="btn btn-primary submit">Save changes</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	<h1>Hi, Welcome to your Dashboard</h1>
+
+
+
+
+	{{# if loggedin}}
+	    <h1>Welcome, my child: {{userName}}</h1>
+	{{else }}
+	    <h1>Are you ready to Confess?</h1>
+	{{/if}}
+
+
 	<div class="grid-container">
 		<div class="item1">
 			{{> previousPost}}
@@ -44,6 +62,8 @@
 
 		</div>
 		{{> trueFalse}}
+
+
 
 	</div>
 </div>
