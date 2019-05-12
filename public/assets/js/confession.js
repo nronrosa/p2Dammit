@@ -180,7 +180,7 @@ $(document).ready(function () {
     //**************************************** */ 
     // SUBMIT USER CONFESSION
     var bodyInput = $("#message-text");
-    // var titleInput = $("#title");
+    // var isItTrueInput = $("value");
     var postForm = $("#confess-submit");
     var userSelect = $("#user");
     $(postForm).on("submit", handleFormSubmit);
@@ -189,8 +189,9 @@ $(document).ready(function () {
     function handleFormSubmit(event) {
         event.preventDefault();
         console.log("hola");
+       var isItTrueInput= $("input[type='radio'][name='inlineRadioOptions']:checked").val();
         // Wont submit the confession if we are missing a body, title, or user
-        if (!bodyInput.val().trim()) {
+        if (!bodyInput.val().trim()||!isItTrueInput) {
             return;
         }
         // Constructing a newConfession object to hand to the database
@@ -199,7 +200,7 @@ $(document).ready(function () {
                 .val()
                 .trim(),
             UserId: sessionStorage.getItem("UserId"),
-            isItTrue: 1
+            isItTrue: isItTrueInput
         };
 
         // If we're updating a confession run updateConfession to update a confession

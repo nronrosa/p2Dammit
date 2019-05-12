@@ -1,6 +1,6 @@
 {
     "development": {
-      "username": "trilogy2",
+      "username": "trilogy",
       "password": "password123",
       "database": "confessions_db",
       "host": "127.0.0.1",
