@@ -15,8 +15,9 @@ getRandomConfessions(loggedInUser);
 postPreviousConfession();
 
 function getRandomConfessions(user) {
-    $.get("api/confessions", function (data) {
-        // console.log("Confessions", data);
+    $.get("api/confessions/"+user.id, function (data) {
+        $( "#previous-post" ).text(data.body);
+        console.log("Confessions", data);
         confessions = data;
         if (!confessions || !confessions.length) {
             displayPreviousPostEmpty(user);
