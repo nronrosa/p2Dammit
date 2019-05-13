@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     /* global moment */
 
@@ -49,7 +48,6 @@ $(document).ready(function () {
             } else {
                 initializeRows();
             }
-
         });
 
     }
@@ -80,11 +78,12 @@ $(document).ready(function () {
     function createNewRow(confession) {
         var formattedDate = new Date(confession.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+        // creates div card
         var newConfessionCard = $("<div>");
-          newConfessionCard.addClass("card");
+        newConfessionCard.addClass("card");
+        // creates div header
         var newConfessionCardHeading = $("<div>");
         newConfessionCardHeading.addClass("card-header");
-
         var newConfessionTitle = $("<h2>");
         var newConfessionDate = $("<small>");
         var newConfessionUser = $("<h5>");
@@ -94,51 +93,41 @@ $(document).ready(function () {
             color: "white",
             "margin-top": "-10px"
         });
-
- 
-       
+        // appends the date, user
+        newConfessionTitle.append(newConfessionDate);
+        newConfessionCardHeading.append(newConfessionUser);
+        // creates div card-body
         var newConfessionCardBody = $("<div>");
         newConfessionCardBody.addClass("card-body");
         var newConfessionBody = $("<p>");
-        //   newConfessionTitle.text(confession.title + " ");
         newConfessionBody.text(confession.body);
         newConfessionDate.text(formattedDate);
 
-        
-        newConfessionTitle.append(newConfessionDate);
+        // creates true button
+        var trueBtn = $("<button>");
+        trueBtn.text("true");
+        trueBtn.addClass("btn btn-danger trueFalseBtn btnValueTrue");
+        trueBtn.attr("data-confessionId", confession.id)
+        trueBtn.val(1);
+        // creates false button
+        var falseBtn = $("<button>");
+        falseBtn.text("false");
+        falseBtn.addClass("btn btn-info trueFalseBtn btnValueFalse");
+        falseBtn.attr("data-confessionId", confession.id)
+        falseBtn.val(0)
 
-        //   newConfessionCardHeading.append(newConfessionTitle);
-        newConfessionCardHeading.append(newConfessionUser);
+        // appends confession body
         newConfessionCardBody.append(newConfessionBody);
         newConfessionCard.append(newConfessionCardHeading);
         newConfessionCard.append(newConfessionCardBody);
         newConfessionCard.data("confession", confession);
 
-        var trueBtn = $("<button>");
-        trueBtn.text("true");
-        trueBtn.addClass("true btn btn-danger trueFalseBtn");
-        trueBtn.attr("data-confessionId", confession.id)
-        trueBtn.val(true);
-        
-        var falseBtn = $("<button>");
-        falseBtn.text("false");
-        falseBtn.addClass("false btn btn-info trueFalseBtn");
-        falseBtn.attr("data-confessionId", confession.id)
-        falseBtn.val(false)
-
-
-
         newConfessionCardHeading.append(trueBtn);
         newConfessionCardHeading.append(" || ");
         newConfessionCardHeading.append(falseBtn);
-        
-
-
-
 
         return newConfessionCard;
     }
-
 
 
 
@@ -189,9 +178,9 @@ $(document).ready(function () {
     function handleFormSubmit(event) {
         event.preventDefault();
         console.log("hola");
-       var isItTrueInput= $("input[type='radio'][name='inlineRadioOptions']:checked").val();
+        var isItTrueInput = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
         // Wont submit the confession if we are missing a body, title, or user
-        if (!bodyInput.val().trim()||!isItTrueInput) {
+        if (!bodyInput.val().trim() || !isItTrueInput) {
             return;
         }
         // Constructing a newConfession object to hand to the database
@@ -205,9 +194,9 @@ $(document).ready(function () {
 
         // If we're updating a confession run updateConfession to update a confession
         // Otherwise run submitConfession to create a whole new confession
-        // if (updating) {
-        //   newConfession.id = confessionId;
-        //   updateConfession(newConfession);
+        // // if (updating) {
+        // //   newConfession.id = confessionId;
+        // //   updateConfession(newConfession);
         // }
         // else {
         submitConfession(newConfession);
@@ -293,22 +282,22 @@ $(document).ready(function () {
     }
 
 
-    $("#loginSubmit").on("click", function(){
+    $("#loginSubmit").on("click", function () {
         var username = $("#loginUserName").val();
         var password = $("#loginPassword").val();
 
         console.log(username, password)
 
         var login = {
-            username : username,
-            password : password
+            username: username,
+            password: password
         }
 
         $.ajax({
             method: "POST",
             url: "/login",
             data: login
-        }).then(function(data){
+        }).then(function (data) {
             window.location = "/dashboard"
             console.log(data)
 
@@ -319,6 +308,32 @@ $(document).ready(function () {
     })
 
 
+
+    function userPlay() {
+        // get button user clicked value
+        // compare is to the attr of button.
+        // are the same = true image
+        // are the not = false image
+        $(".trueFalseBtn").on("click", function (event) {
+            event.preventDefault();
+            var buttonValueClicked = $(this).val();
+            var clickedConfessionId = $(this).attr("data-confessionid");
+            console.log("What button value was clicked: " + buttonValueClicked);
+            console.log("what is the confession clicked:" + clickedConfessionId);
+            $.get("/api/confessions/" + clickedConfessionId, function (data) {
+                console.log(data);
+                console.log("from DB isItTrue val: " + data.isItTrue);
+                var confessionIsItTrueValue = data.isItTrue;
+                if (buttonValueClicked == confessionIsItTrueValue) {
+                    console.log("show the TRUE image modal");
+                } else {
+                    console.log("show the WRONG Image modal");
+                }
+            });
+        });
+    }
+
+    $(document).on("click", ".trueFalseBtn", userPlay);
 
 
 });
