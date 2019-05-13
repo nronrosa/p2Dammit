@@ -413,13 +413,16 @@ function displayPreviousPostEmpty(user) {
 
 
 
-    function userPlay() {
+    // function userPlay() {
         // get button user clicked value
         // compare is to the attr of button.
         // are the same = true image
         // are the not = false image
-        $(".trueFalseBtn").on("click", function (event) {
+        //  $(".trueFalseBtn").on("click ", function (event) {
+        // $(document).on("click", ".trueFalseBtn", userPlay);
+        $(document).on("click ", ".trueFalseBtn",function (event) {
             event.preventDefault();
+            
             var buttonValueClicked = $(this).val();
             var clickedConfessionId = $(this).attr("data-confessionid");
             console.log("What button value was clicked: " + buttonValueClicked);
@@ -435,9 +438,10 @@ function displayPreviousPostEmpty(user) {
                 }
             });
         });
-    }
+    // }
+   
 
-    $(document).on("click", ".trueFalseBtn", userPlay);
+    
 
 
 });
