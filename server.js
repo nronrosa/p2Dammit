@@ -126,15 +126,11 @@ app.route("/login")
     .post((req, res) => {
         var username = req.body.username,
             password = req.body.password;
-
-            console.log(username, password)
-
         db.User.findOne({
             where: {
                 username: username
             }
         }).then(function (user) {
-            console.log(user)
             if (!user) {
                 res.redirect("/login");
             } else if (!user.validPassword(password)) {
@@ -153,10 +149,8 @@ app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = true;
         hbsContent.userName = req.session.user.username;
-        //console.log(JSON.stringify(req.session.user)); 
-        console.log(req.session.user.username);
+        // console.log(req.session.user.username);
         hbsContent.title = "You are logged in";
-        //res.sendFile(__dirname + "/public/dashboard.html");
         res.render("index", hbsContent);
     } else {
         res.redirect("/login");

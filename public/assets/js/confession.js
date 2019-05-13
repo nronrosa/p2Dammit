@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     /* global moment */
     var previouscConfessionContainer = $(".previous-post");
@@ -146,7 +145,6 @@ function displayPreviousPostEmpty(user) {
             } else {
                 initializeRows();
             }
-
         });
 
     }
@@ -172,11 +170,12 @@ function displayPreviousPostEmpty(user) {
     function createNewRow(confession) {
         var formattedDate = new Date(confession.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+        // creates div card
         var newConfessionCard = $("<div>");
         newConfessionCard.addClass("card");
+        // creates div header
         var newConfessionCardHeading = $("<div>");
         newConfessionCardHeading.addClass("card-header");
-
         var newConfessionTitle = $("<h2>");
         var newConfessionDate = $("<small>");
         var newConfessionUser = $("<h5>");
@@ -186,47 +185,38 @@ function displayPreviousPostEmpty(user) {
             color: "white",
             "margin-top": "-10px"
         });
-
-
-
+        // appends the date, user
+        newConfessionTitle.append(newConfessionDate);
+        newConfessionCardHeading.append(newConfessionUser);
+        // creates div card-body
         var newConfessionCardBody = $("<div>");
         newConfessionCardBody.addClass("card-body");
         var newConfessionBody = $("<p>");
-        //   newConfessionTitle.text(confession.title + " ");
         newConfessionBody.text(confession.body);
         newConfessionDate.text(formattedDate);
 
+        // creates true button
+        var trueBtn = $("<button>");
+        trueBtn.text("true");
+        trueBtn.addClass("btn btn-danger trueFalseBtn btnValueTrue");
+        trueBtn.attr("data-confessionId", confession.id)
+        trueBtn.val(1);
+        // creates false button
+        var falseBtn = $("<button>");
+        falseBtn.text("false");
+        falseBtn.addClass("btn btn-info trueFalseBtn btnValueFalse");
+        falseBtn.attr("data-confessionId", confession.id)
+        falseBtn.val(0)
 
-        newConfessionTitle.append(newConfessionDate);
-
-        //   newConfessionCardHeading.append(newConfessionTitle);
-        newConfessionCardHeading.append(newConfessionUser);
+        // appends confession body
         newConfessionCardBody.append(newConfessionBody);
         newConfessionCard.append(newConfessionCardHeading);
         newConfessionCard.append(newConfessionCardBody);
         newConfessionCard.data("confession", confession);
 
-        var trueBtn = $("<button>");
-        trueBtn.text("true");
-        trueBtn.addClass("true btn btn-danger trueFalseBtn");
-        trueBtn.attr("data-confessionId", confession.id)
-        trueBtn.val(true);
-
-        var falseBtn = $("<button>");
-        falseBtn.text("false");
-        falseBtn.addClass("false btn btn-info trueFalseBtn");
-        falseBtn.attr("data-confessionId", confession.id)
-        falseBtn.val(false)
-
-
-
         newConfessionCardHeading.append(trueBtn);
         newConfessionCardHeading.append(" || ");
         newConfessionCardHeading.append(falseBtn);
-
-
-
-
 
         return newConfessionCard;
     }
@@ -243,7 +233,6 @@ function displayPreviousPostEmpty(user) {
     // This function constructs a confession's HTML
     // FACUNDO: code to write to dom 
      
-
 
 
     // This function figures out which confession we want to delete and then calls deleteConfession
@@ -309,9 +298,9 @@ function displayPreviousPostEmpty(user) {
 
         // If we're updating a confession run updateConfession to update a confession
         // Otherwise run submitConfession to create a whole new confession
-        // if (updating) {
-        //   newConfession.id = confessionId;
-        //   updateConfession(newConfession);
+        // // if (updating) {
+        // //   newConfession.id = confessionId;
+        // //   updateConfession(newConfession);
         // }
         // else {
         submitConfession(newConfession);
@@ -423,6 +412,32 @@ function displayPreviousPostEmpty(user) {
     })
 
 
+
+    function userPlay() {
+        // get button user clicked value
+        // compare is to the attr of button.
+        // are the same = true image
+        // are the not = false image
+        $(".trueFalseBtn").on("click", function (event) {
+            event.preventDefault();
+            var buttonValueClicked = $(this).val();
+            var clickedConfessionId = $(this).attr("data-confessionid");
+            console.log("What button value was clicked: " + buttonValueClicked);
+            console.log("what is the confession clicked:" + clickedConfessionId);
+            $.get("/api/confessions/" + clickedConfessionId, function (data) {
+                console.log(data);
+                console.log("from DB isItTrue val: " + data.isItTrue);
+                var confessionIsItTrueValue = data.isItTrue;
+                if (buttonValueClicked == confessionIsItTrueValue) {
+                    console.log("show the TRUE image modal");
+                } else {
+                    console.log("show the WRONG Image modal");
+                }
+            });
+        });
+    }
+
+    $(document).on("click", ".trueFalseBtn", userPlay);
 
 
 });
