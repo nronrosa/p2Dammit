@@ -47,9 +47,13 @@ body {
     background-color: rgba(255, 255, 255, 0.5);  
   } */
   .card{
+    align-content: center;
     background-color: rgba(66, 0, 92, 0.383);
   }
- 
+
+  .card-body{
+   align-content: left;
+  }
  
   /* Set black background color, white text and some padding */
   footer {

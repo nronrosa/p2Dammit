@@ -171,6 +171,7 @@ $(document).ready(function () {
         var formattedDate = new Date(confession.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
         // creates div card
+       
         var newConfessionCard = $("<div>");
         newConfessionCard.addClass("card");
         // creates div header
@@ -192,23 +193,27 @@ $(document).ready(function () {
         var newConfessionCardBody = $("<div>");
         newConfessionCardBody.addClass("card-body");
         var newConfessionBody = $("<p>");
+       
         newConfessionBody.text(confession.body);
-        newConfessionDate.text(formattedDate);
+        newConfessionCard.html("<h4>" + formattedDate + "</h4>");
 
         // creates true button
         var trueBtn = $("<button>");
         trueBtn.text("true");
         trueBtn.addClass("btn btn-danger trueFalseBtn btnValueTrue");
-        trueBtn.attr("data-confessionId", confession.id)
+        trueBtn.attr("data-confessionId", confession.id).attr("data-toggle", "modal")
+        .attr("data-target", ".bd-example-modal-lg") 
         trueBtn.val(1);
         // creates false button
         var falseBtn = $("<button>");
         falseBtn.text("false");
         falseBtn.addClass("btn btn-info trueFalseBtn btnValueFalse");
-        falseBtn.attr("data-confessionId", confession.id)
+        falseBtn.attr("data-confessionId", confession.id).attr("data-toggle", "modal")
+        .attr("data-target", ".bd-example-modal-lg")
         falseBtn.val(0)
 
         // appends confession body
+        // newConfessionCard.append(formattedDate);
         newConfessionCardBody.append(newConfessionBody);
         newConfessionCard.append(newConfessionCardHeading);
         newConfessionCard.append(newConfessionCardBody);
@@ -411,15 +416,6 @@ $(document).ready(function () {
         })
     })
 
-
-
-    // function userPlay() {
-        // get button user clicked value
-        // compare is to the attr of button.
-        // are the same = true image
-        // are the not = false image
-        // window.onload= $(".trueFalseBtn").on("click ", function (event) {
-        // $(document).on("click", ".trueFalseBtn", userPlay);
         $(document).on("click ", ".trueFalseBtn",function (event) {
             event.preventDefault();
             
@@ -432,13 +428,22 @@ $(document).ready(function () {
                 console.log("from DB isItTrue val: " + data.isItTrue);
                 var confessionIsItTrueValue = data.isItTrue;
                 if (buttonValueClicked == confessionIsItTrueValue) {
+                    $(window).load(function() {
+                         
+                        $('#trueModal').modal('show');
+                    });
                     console.log("show the TRUE image modal");
                 } else {
+                    $(window).load(function() {
+                         
+                        $('#falseModal').modal('show');
+                    });
+                  
                     console.log("show the WRONG Image modal");
                 }
             });
         });
-    // }
+    
    
 
     
