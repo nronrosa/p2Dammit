@@ -20,7 +20,7 @@ app.use(express.static("public"));
 
 
 // set our application port
-app.set("port", 3005);
+app.set('port', process.env.PORT || 3000);
 
 // set morgan to log info about our requests for development use.
 app.use(morgan("dev"));

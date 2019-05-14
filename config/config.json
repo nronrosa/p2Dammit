@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "PracticeCode",
-      "password": "Maradona10!",
+      "username": "trilogy",
+      "password": "password123",
       "database": "confessions_db",
-      "host": "localhost",
+      "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "test": {
@@ -14,11 +14,9 @@
       "dialect": "mysql"
     },
     "production": {
-      "username": "root",
-      "password": null,
-      "database": "database_production",
-      "host": "127.0.0.1",
+      "use_env_variable": "JAWSDB_URL",
       "dialect": "mysql"
     }
+    
   }
   
