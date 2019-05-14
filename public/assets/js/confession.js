@@ -431,15 +431,12 @@ $(document).ready(function () {
 
                 if (buttonValueClicked == confessionIsItTrueValue) {
                     console.log("show the TRUE image modal");
-                    alert( "Your guess was correct");
+                    // alert( "Your guess was correct");
+                    $("#trueModal").modal('show');
                 } else {
-                    var x = $("#falseModal");
-                         console.log(x);
-                 
-                     
-                  
                     console.log("show the WRONG Image modal");
-                    alert(data.body + " is False")
+                    // alert(data.body + " is False")
+                    $("#falseModal").modal('show');
                 }
             });
         });
