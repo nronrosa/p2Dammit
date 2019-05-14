@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "pvrkib4w4g1i9hkj",
-      "password": "iyxkvdxlovly0ka4",
-      "database": "vsbu4etvs23xw1u8",
-      "host": "fugfonv8odxxolj8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "username": "PracticeCode",
+      "password": "Maradona10!",
+      "database": "confessions_db",
+      "host": "localhost",
       "dialect": "mysql"
     },
     "test": {
