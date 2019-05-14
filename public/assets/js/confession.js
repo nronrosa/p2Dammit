@@ -427,18 +427,10 @@ $(document).ready(function () {
                 console.log(data);
                 console.log("from DB isItTrue val: " + data.isItTrue);
                 var confessionIsItTrueValue = data.isItTrue;
-<<<<<<< HEAD
 
 
 
                 if (data.isItTrue) {
-=======
-                if (buttonValueClicked == confessionIsItTrueValue) {
-                    $(window).load(function() {
-                         
-                        $('#trueModal').modal('show');
-                    });
->>>>>>> 54e5ec14a06d9e0a9879c155c1627d54d1c99aa1
                     console.log("show the TRUE image modal");
                     alert(data.body + "is True")
                 } else {
