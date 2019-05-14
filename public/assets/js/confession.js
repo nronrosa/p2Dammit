@@ -195,7 +195,7 @@ $(document).ready(function () {
         var newConfessionBody = $("<p>");
        
         newConfessionBody.text(confession.body);
-        newConfessionCard.html("<h4>" + formattedDate + "</h4>");
+        newConfessionCard.html("<h6>" + formattedDate + "</h6>");
 
         // creates true button
         var trueBtn = $("<button>");
@@ -426,18 +426,16 @@ $(document).ready(function () {
             $.get("/api/confessions/" + clickedConfessionId, function (data) {
                 console.log(data);
                 console.log("from DB isItTrue val: " + data.isItTrue);
-                var confessionIsItTrueValue = data.isItTrue;
-
-
-
+                // var confessionIsItTrueValue = data.isItTrue;
                 if (data.isItTrue) {
+                    
                     console.log("show the TRUE image modal");
                     alert(data.body + "is True")
                 } else {
-                    $(window).load(function() {
-                         
-                        $('#falseModal').modal('show');
-                    });
+                    var x = $("#falseModal");
+                         console.log(x);
+                 
+                     
                   
                     console.log("show the WRONG Image modal");
                     alert(data.body + " is False")
