@@ -21,8 +21,9 @@ module.exports = {
             },
             include: [db.User]
         }).then(function (dbConfession) {
-            res.render("index", {confessions: dbConfession})
-            //res.json(dbConfession);
+           console.log("Inside ");
+            // res.render("index", {confessions: dbConfession})
+            res.json(dbConfession);
         });
     },
     delete: function (req, res) {

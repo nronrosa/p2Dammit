@@ -114,12 +114,21 @@ body {
     /* font-size: 30px; */
     margin: 40px;
   }
-  
+  .jumbotron {
+    background-color: rgba(106, 5, 173, 0.3);
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    }
   a:hover{
     color:plum !important;
 
   }
-  a {
+  .heading, h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:white !important;
+    text-shadow: 1px 1px 2px rgb(56, 0, 88);
+  }
+  a{
     color:white !important;
     text-shadow: 1px 1px 2px black;
   }
@@ -155,4 +164,7 @@ body {
   .card {
     box-shadow: 5px 5px 18px black;
   }
+  /* .confession-container {
+    background-color: green;
+  } */
   
