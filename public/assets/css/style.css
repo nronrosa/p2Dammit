@@ -5,6 +5,9 @@ body {
     background-size:cover;
     background-attachment: fixed;
 }
+.nav-item {
+  color:white !important;
+}
 .navbar {
     /* height: 30px; */
     margin-bottom: 0;
@@ -109,10 +112,11 @@ body {
   }
   
   a:hover{
-    color:plum;
+    color:plum !important;
+
   }
   a {
-    color:white;
+    color:white !important;
     text-shadow: 1px 1px 2px black;
   }
 .card-title{

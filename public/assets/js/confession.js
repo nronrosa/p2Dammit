@@ -138,7 +138,7 @@ $(document).ready(function () {
         //   }
         //   $.get("api/confessions" + userId, function(data) {
         $.get("api/confessions", function (data) {
-            // console.log("Confessions", data);
+          //  console.log("Confessions", data);
             confessions = data;
             if (!confessions || !confessions.length) {
                 displayEmpty(user);
@@ -431,10 +431,15 @@ $(document).ready(function () {
                 console.log(data);
                 console.log("from DB isItTrue val: " + data.isItTrue);
                 var confessionIsItTrueValue = data.isItTrue;
-                if (buttonValueClicked == confessionIsItTrueValue) {
+
+
+
+                if (data.isItTrue) {
                     console.log("show the TRUE image modal");
+                    alert(data.body + "is True")
                 } else {
                     console.log("show the WRONG Image modal");
+                    alert(data.body + " is False")
                 }
             });
         });

@@ -10,7 +10,8 @@ module.exports = {
             where: query,
             include: [db.User]
         }).then(function (dbConfession) {
-            res.json(dbConfession);
+         //res.render("index", {confessions: {id: "100"}})
+         res.json(dbConfession);
         });
     },
     findOne: function (req, res) {
@@ -20,7 +21,8 @@ module.exports = {
             },
             include: [db.User]
         }).then(function (dbConfession) {
-            res.json(dbConfession);
+            res.render("index", {confessions: dbConfession})
+            //res.json(dbConfession);
         });
     },
     delete: function (req, res) {

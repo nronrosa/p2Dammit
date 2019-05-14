@@ -10,6 +10,7 @@ var db = require("./models");
 var hbs = require("express-handlebars");
 var path = require("path");
 var routes = require("./routes");
+var axios = require("axios")
 
 // invoke an instance of express application.
 var app = express();
@@ -147,11 +148,14 @@ app.route("/login")
 // route for user"s dashboard
 app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-        hbsContent.loggedin = true;
-        hbsContent.userName = req.session.user.username;
-        // console.log(req.session.user.username);
-        hbsContent.title = "You are logged in";
-        res.render("index", hbsContent);
+       // axios.get("/api/confessions").then(function(data){
+            hbsContent.loggedin = true;
+            hbsContent.userName = req.session.user.username;
+            // console.log(req.session.user.username);
+            hbsContent.title = "You are logged in";
+            //hbs.data = data
+            res.render("index", hbsContent);
+        //})
     } else {
         res.redirect("/login");
     }
