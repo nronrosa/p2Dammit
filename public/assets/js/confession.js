@@ -424,13 +424,14 @@ $(document).ready(function () {
             console.log("What button value was clicked: " + buttonValueClicked);
             console.log("what is the confession clicked:" + clickedConfessionId);
             $.get("/api/confessions/" + clickedConfessionId, function (data) {
-                console.log(data);
                 console.log("from DB isItTrue val: " + data.isItTrue);
-                // var confessionIsItTrueValue = data.isItTrue;
-                if (data.isItTrue) {
-                    
+                var confessionIsItTrueValue = data.isItTrue;
+
+
+
+                if (buttonValueClicked == confessionIsItTrueValue) {
                     console.log("show the TRUE image modal");
-                    alert(data.body + "is True")
+                    alert( "Your guess was correct");
                 } else {
                     var x = $("#falseModal");
                          console.log(x);
