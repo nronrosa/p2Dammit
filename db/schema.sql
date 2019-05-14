@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS vsbu4etvs23xw1u8;
-CREATE DATABASE vsbu4etvs23xw1u8;
+DROP DATABASE IF EXISTS confessions_db;
+CREATE DATABASE confessions_db;
