@@ -426,9 +426,6 @@ $(document).ready(function () {
             $.get("/api/confessions/" + clickedConfessionId, function (data) {
                 console.log("from DB isItTrue val: " + data.isItTrue);
                 var confessionIsItTrueValue = data.isItTrue;
-
-
-
                 if (buttonValueClicked == confessionIsItTrueValue) {
                     console.log("show the TRUE image modal");
                     // alert( "Your guess was correct");
