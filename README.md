@@ -24,4 +24,4 @@ Confessions is an application which signs up users so they can write stories (co
 
  ![concert data with input](public/assets/images/confessions.png)
 
- [demo](https://dry-river-46033.herokuapp.com/dashboard)
+ [Link to application](https://dry-river-46033.herokuapp.com/dashboard)
