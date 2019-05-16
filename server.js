@@ -99,9 +99,11 @@ app.route("/signup")
             .then(user => {
                 req.session.user = user.dataValues;
                 console.log(user.dataValues)
-                res.redirect("/dashboard");
+                res.render("login", hbsContent);
+                // res.redirect("/dashboard");
             })
             .catch(error => {
+                alert("Something went wrong, please try and sign in again.")
                 console.log(error);
                 res.redirect("/signup");
             });
