@@ -13,10 +13,10 @@ Project 2 Confessions is a full stack application created by
 * Backed by a Sequelized MySQL Database;
 * It has GET and POST routes for retrieving and adding new data;
 * It is deployed using Heroku (with Data);
-* Utilize at least one new technology: Express-session for user authentication, sign-up login logout, aslo CSS Animations for layout and display ;
-* With a polished frontend / UI;
+* Utilize at least one new technology: Express-session for user authentication, sign-up login logout, also CSS Animations for layout and display ;
+* A polished frontend / UI;
 * Has a folder structure that meets MVC Paradigm;
-* Meet good quality coding standards (indentation, scoping, naming).
+* Meets good quality coding standards (indentation, scoping, naming).
 
 
  ## Project Synopsis ##

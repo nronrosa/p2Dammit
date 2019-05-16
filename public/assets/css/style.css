@@ -85,10 +85,10 @@ body {
 
   .item2 { 
     height: 400px;
-    background-color: rgba(254, 253, 255, 0.3);
+    /* background-color: rgba(254, 253, 255, 0.3); */
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: center;
-    box-shadow: 5px 10px 18px black;
+    /* box-shadow: 5px 10px 18px black; */
     padding: 50px 0;
     font-size: 30px; 
   }
@@ -127,7 +127,11 @@ body {
   align-self: baseline;
 }
 .my-3{
-  box-shadow: 3px 3px 15px black;
+  box-shadow: 5px 10px 18px black;
+}
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: 5px 10px 18px black;
 }
   .minibox {
     height: 350px;
@@ -141,6 +145,13 @@ body {
   .blue-text {
     color:purple;
     text-shadow: 1px 1px 2px blueviolet;  
+  }
+  .btn-basic:hover, .btn-basic:focus{
+    border: none !important;
+    outline: black;
+    background-color: gray;
+    color: white; 
+    text-shadow: 1px 1px 2px black; 
   }
 .btn:hover, a:hover, h3:hover {
     color:rgb(255, 230, 0);

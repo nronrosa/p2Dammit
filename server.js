@@ -100,9 +100,11 @@ app.route("/signup")
             .then(user => {
                 req.session.user = user.dataValues;
                 console.log(user.dataValues)
-                res.redirect("/dashboard");
+                res.render("login", hbsContent);
+                // res.redirect("/dashboard");
             })
             .catch(error => {
+                alert("Something went wrong, please try and sign in again.")
                 console.log(error);
                 res.redirect("/signup");
             });
@@ -172,7 +174,7 @@ app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
 });
 
-// start the express server
+// start the express server....heroku test message
 app.listen(app.get("port"), () => console.log(`App started on port ${app.get("port")}`));
 
 module.exports = app;
