@@ -82,10 +82,11 @@ app.get("/", sessionChecker, (req, res) => {
 });
 
 // route for user signup
-app.route("/signup")
+app.route("/signup") 
     // .get(sessionChecker, (req, res) => {
     .get((req, res) => {
-
+        // delete req.session;
+        res.clearCookie("user_sid");
         console.log("get signup");
         //res.sendFile(__dirname + "/public/signup.html");
         res.render("signup", hbsContent);
@@ -151,14 +152,16 @@ app.get("/dashboard", (req, res) => {
 
 // route for user logout
 app.get("/logout", (req, res) => {
+    console.log("req.session.user= ",req.session.user);
+    console.log("req.cookies.user_sid= ",req.cookies.user_sid);
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = false;
         hbsContent.title = "You are logged out!";
         // req.logOut();
         delete req.session;
         res.clearCookie("user_sid");
-        console.log(JSON.stringify(hbsContent));
         res.redirect("/");
+        console.log(JSON.stringify(hbsContent));
     } else {
         res.redirect("/login");
     }

@@ -24,7 +24,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.css">
 	<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 	<title>True||False</title>
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 	<!-- AnimateCSS CDN-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
 </head>
@@ -33,12 +34,12 @@
 	<div class="page-header">
 		<h1 class="text-center heading">Confessions</h1>
 	</div>
-	<nav class="navbar nav-wrapper navbar-expand-lg navbar-light animated fadeInRight">
+	<nav class="navbar nav-wrapper navbar-expand-lg navbar-light animated zoomIn">
 	 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+		 <i class="material-icons menuIcon">filter_list</i>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav mr-auto">
@@ -51,9 +52,10 @@
 
 			<div class="navbar-right">
 				{{# if loggedin}}
-				<a class="nav-link" href="/logout">Log Out</a>
+				<a class="nav-link" href="/logout" id="logOutBtn">Log Out</a>
 				{{else }}
-				<a class="nav-link" href="/login">Log In</a>
+				<a class="nav-link" href="/login">Do Not Use This!!! Use Input Tag Instead</a>
+				
 				{{/if}}
 
 

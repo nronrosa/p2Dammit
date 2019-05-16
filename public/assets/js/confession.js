@@ -7,7 +7,7 @@ $(document).ready(function () {
         username: sessionStorage.getItem("UserName"),
         email: sessionStorage.getItem("UserEmail")
     }
-    getConfessions(loggedInUser);
+    
     // This function grabs confessions from the database and updates the view
     function getConfessions(user) {
 
@@ -69,6 +69,9 @@ $(document).ready(function () {
         newConfessionCardHeading.append(trueBtn);
         newConfessionCardHeading.append(" || ");
         newConfessionCardHeading.append(falseBtn);
+        newConfessionCard;
+
+
         return newConfessionCard;
     }
 
@@ -108,7 +111,7 @@ $(document).ready(function () {
     // A function for handling what happens when the form to create a new confession is submitted
     function handleFormSubmit(event) {
         event.preventDefault();
-        
+
         var isItTrueInput = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
 
         if (!bodyInput.val().trim() || !isItTrueInput) {
@@ -130,7 +133,10 @@ $(document).ready(function () {
         }
     }
 
-    $("#loginSubmit").on("click", function () {
+
+    $("#loginSubmit").on("click", function (evt) {
+        evt.preventDefault();
+        console.log("LOGIN CLICKED--------------");
         var username = $("#loginUserName").val();
         var password = $("#loginPassword").val();
         console.log(username, password)
@@ -143,12 +149,25 @@ $(document).ready(function () {
             url: "/login",
             data: login
         }).then(function (data) {
-            window.location = "/dashboard"
-            console.log(data)
-            sessionStorage.setItem("UserName", data.username)
-            sessionStorage.setItem("UserEmail", data.email)
-            sessionStorage.setItem("UserId", data.id)
-        })
+            window.location = "/dashboard";
+            console.log(data);
+            sessionStorage.setItem("UserName", data.username);
+            sessionStorage.setItem("UserEmail", data.email);
+            sessionStorage.setItem("UserId", data.id);
+        });
+    });
+
+    $("#logOutBtn").on("click",function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/logout"
+          
+        }).then(function () {
+            // sessionStorage = {};
+            
+            window.location = "/dashboard";
+        });
     });
 
     $(document).on("click ", ".trueFalseBtn", function (event) {
@@ -171,4 +190,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    console.log("sessionStorage =",sessionStorage);
+    if (loggedInUser){
+        getConfessions(loggedInUser);
+    }
 });
