@@ -85,8 +85,6 @@ app.get("/", sessionChecker, (req, res) => {
 app.route("/signup") 
     // .get(sessionChecker, (req, res) => {
     .get((req, res) => {
-        // delete req.session;
-        res.clearCookie("user_sid");
         console.log("get signup");
         //res.sendFile(__dirname + "/public/signup.html");
         res.render("signup", hbsContent);
@@ -104,7 +102,7 @@ app.route("/signup")
                 // res.redirect("/dashboard");
             })
             .catch(error => {
-                alert("Something went wrong, please try and sign in again.")
+                alert("Something went wrong, please try and sign in again.");
                 console.log(error);
                 res.redirect("/signup");
             });
