@@ -33,7 +33,6 @@ $(document).ready(function () {
         var newConfessionUser = $("<h5>");
         newConfessionUser.text("Written by: " + confession.User.username);
         newConfessionUser.css({
-            
             color: "white",
             "margin-top": "-10px"
         });
@@ -139,6 +138,7 @@ $(document).ready(function () {
         console.log("LOGIN CLICKED--------------");
         var username = $("#loginUserName").val();
         var password = $("#loginPassword").val();
+        $("#signUpBtn").hide();
         console.log(username, password)
         var login = {
             username: username,
