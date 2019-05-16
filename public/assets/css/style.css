@@ -42,9 +42,10 @@ body {
     color: white; 
     text-shadow: 1px 1px 2px black; 
   }
-  .card{
+  .card {
     align-content: center;
     background-color: rgba(66, 0, 92, 0.383);
+    box-shadow: 5px 5px 18px black;
   }
 
   .card-body{
@@ -120,6 +121,7 @@ body {
   a{
     color:white !important;
     text-shadow: 1px 1px 2px black;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
 .card-title{
   align-self: baseline;
@@ -148,7 +150,5 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left:100px;
   }
-  .card {
-    box-shadow: 5px 5px 18px black;
-  }
+ 
  
