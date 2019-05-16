@@ -12,7 +12,6 @@ module.exports = function(sequelize, DataTypes) {
         defaultValue: true
       }
     });
-  
     // Confession must belong to a User
     // a confession must have User to be created
     Confession.associate = function(models) {
@@ -22,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
         }
       });
     };
-  
     return Confession;
   };
   

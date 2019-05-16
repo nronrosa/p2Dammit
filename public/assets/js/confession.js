@@ -286,7 +286,7 @@ $(document).ready(function () {
     // A function for handling what happens when the form to create a new confession is submitted
     function handleFormSubmit(event) {
         event.preventDefault();
-        console.log("hola");
+        
         var isItTrueInput = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
         // Wont submit the confession if we are missing a body, title, or user
         if (!bodyInput.val().trim() || !isItTrueInput) {
@@ -414,7 +414,7 @@ $(document).ready(function () {
             sessionStorage.setItem("UserEmail", data.email)
             sessionStorage.setItem("UserId", data.id)
         })
-    })
+    });
 
         $(document).on("click ", ".trueFalseBtn",function (event) {
             event.preventDefault();

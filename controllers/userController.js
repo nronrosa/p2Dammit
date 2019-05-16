@@ -13,7 +13,6 @@ module.exports = {
             where: {
                 id: req.params.id
             },
-            // include: [db.Confession]
         }).then(function (dbUser) {
             res.json(dbUser);
         });

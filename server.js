@@ -95,7 +95,7 @@ app.get("/", sessionChecker, (req, res) => {
 
 // route for user signup
 app.route("/signup")
-    //.get(sessionChecker, (req, res) => {
+    // .get(sessionChecker, (req, res) => {
     .get((req, res) => {
         console.log("get signup");
         //res.sendFile(__dirname + "/public/signup.html");
