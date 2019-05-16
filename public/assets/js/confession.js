@@ -33,7 +33,7 @@ $(document).ready(function () {
         var newConfessionUser = $("<h5>");
         newConfessionUser.text("Written by: " + confession.User.username);
         newConfessionUser.css({
-            float: "right",
+            
             color: "white",
             "margin-top": "-10px"
         });
@@ -49,14 +49,14 @@ $(document).ready(function () {
         // creates true button
         var trueBtn = $("<button>");
         trueBtn.text("true");
-        trueBtn.addClass("btn btn-danger trueFalseBtn btnValueTrue");
+        trueBtn.addClass("btn btn-primary trueFalseBtn btnValueTrue");
         trueBtn.attr("data-confessionId", confession.id).attr("data-toggle", "modal")
             .attr("data-target", ".bd-example-modal-lg")
         trueBtn.val(1);
         // creates false button
         var falseBtn = $("<button>");
         falseBtn.text("false");
-        falseBtn.addClass("btn btn-info trueFalseBtn btnValueFalse");
+        falseBtn.addClass("btn btn-danger trueFalseBtn btnValueFalse");
         falseBtn.attr("data-confessionId", confession.id).attr("data-toggle", "modal")
             .attr("data-target", ".bd-example-modal-lg")
         falseBtn.val(0)
@@ -64,11 +64,11 @@ $(document).ready(function () {
         // newConfessionCard.append(formattedDate);
         newConfessionCardBody.append(newConfessionBody);
         newConfessionCard.append(newConfessionCardHeading);
-        newConfessionCard.append(newConfessionCardBody);
-        newConfessionCard.data("confession", confession);
         newConfessionCardHeading.append(trueBtn);
         newConfessionCardHeading.append(" || ");
         newConfessionCardHeading.append(falseBtn);
+        newConfessionCard.append(newConfessionCardBody);
+        newConfessionCard.data("confession", confession);
         newConfessionCard;
 
 
