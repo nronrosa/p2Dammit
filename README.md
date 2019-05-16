@@ -1,4 +1,4 @@
-# p2DammitRequirements
+ # Confessions #
 
 Project 2 Confessions is a full stack application created by 
 * Nitza Rondon-Rosario 
@@ -6,6 +6,8 @@ Project 2 Confessions is a full stack application created by
 * Frank Calovini 
 * Chris Paul
 
+
+ # p2DammitRequirements #
 
 * Using Node and Express Web Server;
 * Backed by a Sequelized MySQL Database;
