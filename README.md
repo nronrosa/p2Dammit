@@ -3,7 +3,7 @@
 Project 2 Confessions is a full stack application created by Nitza Rondon-Rosario, Facundo L. Rodriguez, Frank Calovini, and Chris Paul
 
 
-*Using Node and Express Web Server;
+Markup: *Using Node and Express Web Server;
 *Backed by a Sequelized MySQL Database;
 *It has GET and POST routes for retrieving and adding new data;
 *It is deployed using Heroku (with Data);
