@@ -127,6 +127,10 @@ body {
 .my-3{
   box-shadow: 5px 10px 18px black;
 }
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: 5px 10px 18px black;
+}
   .minibox {
     height: 350px;
     width:auto;
