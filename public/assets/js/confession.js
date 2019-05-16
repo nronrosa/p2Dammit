@@ -12,7 +12,6 @@ $(document).ready(function () {
     function getConfessions(user) {
 
         $.get("api/confessions", function (data) {
-
             confessions = data;
             if (!confessions || !confessions.length) {
                 displayEmpty(user);
@@ -21,6 +20,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function createNewRow(confession) {
         var formattedDate = new Date(confession.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY");
@@ -59,8 +59,6 @@ $(document).ready(function () {
         falseBtn.attr("data-confessionId", confession.id).attr("data-toggle", "modal")
             .attr("data-target", ".bd-example-modal-lg")
         falseBtn.val(0)
-        // appends confession body
-        // newConfessionCard.append(formattedDate);
         newConfessionCardBody.append(newConfessionBody);
         newConfessionCard.append(newConfessionCardHeading);
         newConfessionCardHeading.append(trueBtn);
@@ -69,8 +67,6 @@ $(document).ready(function () {
         newConfessionCard.append(newConfessionCardBody);
         newConfessionCard.data("confession", confession);
         newConfessionCard;
-
-
         return newConfessionCard;
     }
 
@@ -82,7 +78,7 @@ $(document).ready(function () {
         }
         confessionContainer.append(confessionsToAdd);
     }
-    //    w.location.href = "/cms?confession_id=" + currentConfession.id;
+ 
     function displayEmpty(user) {
         var query = window.location.search;
         var partial = "";
@@ -110,9 +106,7 @@ $(document).ready(function () {
     // A function for handling what happens when the form to create a new confession is submitted
     function handleFormSubmit(event) {
         event.preventDefault();
-
         var isItTrueInput = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
-
         if (!bodyInput.val().trim() || !isItTrueInput) {
             return;
         }
@@ -131,7 +125,6 @@ $(document).ready(function () {
             });
         }
     }
-
 
     $("#loginSubmit").on("click", function (evt) {
         evt.preventDefault();
@@ -163,9 +156,7 @@ $(document).ready(function () {
             method: "GET",
             url: "/logout"
           
-        }).then(function () {
-            // sessionStorage = {};
-            
+        }).then(function () { 
             window.location = "/dashboard";
         });
     });
@@ -181,11 +172,9 @@ $(document).ready(function () {
             var confessionIsItTrueValue = data.isItTrue;
             if (buttonValueClicked == confessionIsItTrueValue) {
                 console.log("show the TRUE image modal");
-                // alert( "Your guess was correct");
                 $("#trueModal").modal('show');
             } else {
                 console.log("show the WRONG Image modal");
-                // alert(data.body + " is False")
                 $("#falseModal").modal('show');
             }
         });
