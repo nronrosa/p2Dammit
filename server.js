@@ -1,23 +1,18 @@
-// require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var morgan = require("morgan");
-// var User = require("./models/user");
-// var User = require("./controllers/userController");
 var db = require("./models");
 var hbs = require("express-handlebars");
 var path = require("path");
 var routes = require("./routes");
-// var axios = require("axios")
 
 // invoke an instance of express application.
 var app = express();
 
 // Serve static content for the app from the "public" directory.
 app.use(express.static("public"));
-
 
 // set our application port
 app.set('port', process.env.PORT || 3000);
@@ -46,10 +41,6 @@ app.use(session({
 
 // Routes: app will use routes that is var require
 app.use(routes);
-
-
-
-
 
 // handle bars config
 app.engine("hbs", hbs({
@@ -85,30 +76,29 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
-
-
 // route for Home-Page
 app.get("/", sessionChecker, (req, res) => {
     res.redirect("/login");
 });
 
-
 // route for user signup
 app.route("/signup")
     // .get(sessionChecker, (req, res) => {
     .get((req, res) => {
+
         console.log("get signup");
         //res.sendFile(__dirname + "/public/signup.html");
         res.render("signup", hbsContent);
     })
     .post((req, res) => {
         db.User.create({
-                username: req.body.username,
-                email: req.body.email,
-                password: req.body.password
-            })
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        })
             .then(user => {
                 req.session.user = user.dataValues;
+                console.log(user.dataValues)
                 res.redirect("/dashboard");
             })
             .catch(error => {
@@ -116,7 +106,6 @@ app.route("/signup")
                 res.redirect("/signup");
             });
     });
-
 
 // route for user Login
 app.route("/login")
@@ -144,29 +133,29 @@ app.route("/login")
         });
     });
 
-
 // route for user"s dashboard
 app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-       // axios.get("/api/confessions").then(function(data){
-            hbsContent.loggedin = true;
-            hbsContent.userName = req.session.user.username;
-            // console.log(req.session.user.username);
-            hbsContent.title = "You are logged in";
-            //hbs.data = data
-            res.render("index", hbsContent);
+        // axios.get("/api/confessions").then(function(data){
+        hbsContent.loggedin = true;
+        hbsContent.userName = req.session.user.username;
+        // console.log(req.session.user.username);
+        hbsContent.title = "You are logged in";
+        //hbs.data = data
+        res.render("index", hbsContent);
         //})
     } else {
         res.redirect("/login");
     }
 });
 
-
 // route for user logout
 app.get("/logout", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = false;
         hbsContent.title = "You are logged out!";
+        // req.logOut();
+        delete req.session;
         res.clearCookie("user_sid");
         console.log(JSON.stringify(hbsContent));
         res.redirect("/");
@@ -175,16 +164,12 @@ app.get("/logout", (req, res) => {
     }
 });
 
-
 // route for handling 404 requests(unavailable routes)
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
 });
 
-
 // start the express server
 app.listen(app.get("port"), () => console.log(`App started on port ${app.get("port")}`));
-
-
 
 module.exports = app;

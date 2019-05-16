@@ -1,5 +1,5 @@
-var bcrypt = require('bcrypt');
 
+var bcrypt = require('bcrypt');
 
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
@@ -24,10 +24,18 @@ module.exports = function (sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4bee57de8a08cfe52e86a18bcad323f4ae36b2d8
   User.beforeCreate((user, options) => {
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(user.password, salt);
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4bee57de8a08cfe52e86a18bcad323f4ae36b2d8
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
