@@ -3,15 +3,8 @@ const router = require('express').Router();
 const apiConfessionRoute = require('./confession-api-routes');
 const apiUserRoute = require('./user-api-routes');
 
- 
-
 // ***********************************
-
-
-
 router.use('/api', apiUserRoute);
 router.use('/api', apiConfessionRoute);
-//router.use('*', htmlRoutes);
-
 
 module.exports = router;
