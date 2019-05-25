@@ -7,12 +7,10 @@ $(document).ready(function () {
         username: sessionStorage.getItem("UserName"),
         email: sessionStorage.getItem("UserEmail")
     }
-    
+
     // This function grabs confessions from the database and updates the view
     function getConfessions(user) {
-
         $.get("api/confessions", function (data) {
-
             confessions = data;
             if (!confessions || !confessions.length) {
                 displayEmpty(user);
@@ -21,6 +19,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function createNewRow(confession) {
         var formattedDate = new Date(confession.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY");
@@ -70,7 +69,6 @@ $(document).ready(function () {
         newConfessionCard.data("confession", confession);
         newConfessionCard;
 
-
         return newConfessionCard;
     }
 
@@ -82,7 +80,7 @@ $(document).ready(function () {
         }
         confessionContainer.append(confessionsToAdd);
     }
-    //    w.location.href = "/cms?confession_id=" + currentConfession.id;
+    
     function displayEmpty(user) {
         var query = window.location.search;
         var partial = "";
@@ -125,6 +123,7 @@ $(document).ready(function () {
             isItTrue: isItTrueInput
         };
         submitConfession(newConfession);
+
         function submitConfession(confession) {
             $.post("/api/confessions", confession, function () {
                 window.location.href = "/dashboard";
@@ -132,14 +131,11 @@ $(document).ready(function () {
         }
     }
 
-
     $("#loginSubmit").on("click", function (evt) {
         evt.preventDefault();
-        console.log("LOGIN CLICKED--------------");
         var username = $("#loginUserName").val();
         var password = $("#loginPassword").val();
         $("#signUpBtn").hide();
-        console.log(username, password)
         var login = {
             username: username,
             password: password
@@ -150,22 +146,18 @@ $(document).ready(function () {
             data: login
         }).then(function (data) {
             window.location = "/dashboard";
-            console.log(data);
             sessionStorage.setItem("UserName", data.username);
             sessionStorage.setItem("UserEmail", data.email);
             sessionStorage.setItem("UserId", data.id);
         });
     });
 
-    $("#logOutBtn").on("click",function (evt) {
+    $("#logOutBtn").on("click", function (evt) {
         evt.preventDefault();
         $.ajax({
             method: "GET",
             url: "/logout"
-          
         }).then(function () {
-            // sessionStorage = {};
-            
             window.location = "/dashboard";
         });
     });
@@ -174,25 +166,17 @@ $(document).ready(function () {
         event.preventDefault();
         var buttonValueClicked = $(this).val();
         var clickedConfessionId = $(this).attr("data-confessionid");
-        console.log("What button value was clicked: " + buttonValueClicked);
-        console.log("what is the confession clicked:" + clickedConfessionId);
         $.get("/api/confessions/" + clickedConfessionId, function (data) {
-            console.log("from DB isItTrue val: " + data.isItTrue);
             var confessionIsItTrueValue = data.isItTrue;
             if (buttonValueClicked == confessionIsItTrueValue) {
-                console.log("show the TRUE image modal");
-                // alert( "Your guess was correct");
                 $("#trueModal").modal('show');
             } else {
-                console.log("show the WRONG Image modal");
-                // alert(data.body + " is False")
                 $("#falseModal").modal('show');
             }
         });
     });
 
-    console.log("sessionStorage =",sessionStorage);
-    if (loggedInUser){
+    if (loggedInUser) {
         getConfessions(loggedInUser);
     }
 });

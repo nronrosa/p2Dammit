@@ -69,7 +69,6 @@ var hbsContent = {
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
     if (req.session.user && req.cookies.user_sid) {
-
         res.redirect("/dashboard");
     } else {
         next();
@@ -82,24 +81,20 @@ app.get("/", sessionChecker, (req, res) => {
 });
 
 // route for user signup
-app.route("/signup") 
+app.route("/signup")
     // .get(sessionChecker, (req, res) => {
     .get((req, res) => {
-        console.log("get signup");
-        //res.sendFile(__dirname + "/public/signup.html");
         res.render("signup", hbsContent);
     })
     .post((req, res) => {
         db.User.create({
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password
-        })
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            })
             .then(user => {
                 req.session.user = user.dataValues;
-                console.log(user.dataValues)
                 res.render("login", hbsContent);
-                // res.redirect("/dashboard");
             })
             .catch(error => {
                 alert("Something went wrong, please try and sign in again.");
@@ -111,7 +106,6 @@ app.route("/signup")
 // route for user Login
 app.route("/login")
     .get(sessionChecker, (req, res) => {
-        //res.sendFile(__dirname + "/public/login.html");
         res.render("login", hbsContent);
     })
     .post((req, res) => {
@@ -125,7 +119,6 @@ app.route("/login")
             if (!user) {
                 res.redirect("/login");
             } else if (!user.validPassword(password)) {
-                // include here wrong password
                 res.redirect("/login");
             } else {
                 req.session.user = user.dataValues;
@@ -137,14 +130,10 @@ app.route("/login")
 // route for user"s dashboard
 app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-        // axios.get("/api/confessions").then(function(data){
         hbsContent.loggedin = true;
         hbsContent.userName = req.session.user.username;
-        // console.log(req.session.user.username);
         hbsContent.title = "You are logged in";
-        //hbs.data = data
         res.render("index", hbsContent);
-        //})
     } else {
         res.redirect("/login");
     }
@@ -152,16 +141,12 @@ app.get("/dashboard", (req, res) => {
 
 // route for user logout
 app.get("/logout", (req, res) => {
-    console.log("req.session.user= ",req.session.user);
-    console.log("req.cookies.user_sid= ",req.cookies.user_sid);
     if (req.session.user && req.cookies.user_sid) {
         hbsContent.loggedin = false;
         hbsContent.title = "You are logged out!";
-        // req.logOut();
         delete req.session;
         res.clearCookie("user_sid");
         res.redirect("/");
-        console.log(JSON.stringify(hbsContent));
     } else {
         res.redirect("/login");
     }

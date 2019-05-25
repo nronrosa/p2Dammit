@@ -1,178 +1,204 @@
 body {
-    background-image: url("../images/booth2.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-attachment: fixed;
+  background-image: url("../images/booth2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
+
 .nav-item {
-  color:white !important;
+  color: white !important;
 }
+
 .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-    background-color: rgba(66, 0, 92, 0.383);
-    box-shadow: 5px 5px 18px black;
-    text-shadow: 1px 1px 2px black;
-    color:white;
-    font-family: 'Franklin Gothic Medium',  sans-serif;
-  }
-  
-  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-  .row.content {height: 0px;}
-
-  .pastPosts {
-    color: white;
-    text-shadow: 1px 1px 2px black;
-  }
-  
-  /* Set gray background color and 100% height */
-  .sidenav {
-    background-color: rgba(66, 0, 92, 0.383);
-    box-shadow: 5px 5px 18px gold;
-    margin-top: 130px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 10px;
-    color:white;
-    text-shadow: 1px 1px 2px black;
-  }
-  
-  .btn {
-    background-color: rgba(94, 2, 136, 0.87);
-    color: white; 
-    text-shadow: 1px 1px 2px black; 
-  }
-  .card {
-    align-content: center;
-    background-color: rgba(66, 0, 92, 0.383);
-    box-shadow: 5px 5px 18px black;
-  }
-
-  .card-body{
-   align-content: left;
-  }
-
-  /* Set black background color, white text and some padding */
-  footer {
-      text-align: center;
-      color: white;
-      text-shadow: 1px 1px 2px black;
-    background-color: rgba(29, 1, 46, 0.657);
-    box-shadow: 5px 5px 18px black;
-  }
-  .container-fluid{
-    background-color: rgba(82, 0, 129, 0.3);
-  }
-  
-  /* On small screens, set height to 'auto' for sidenav and grid */
-  @media screen and (max-width: 767px) {
-    .sidenav {
-      height: auto;
-      padding: 15px;
-    }
-    .row.content {height:auto;} 
-  }
-  
-  .item1, .item3 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color: rgba(106, 5, 173, 0.3);
-    color:white;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-    box-shadow: 5px 10px 18px black;
-  }
-
-  .item2 { 
-    height: 400px;
-    /* background-color: rgba(254, 253, 255, 0.3); */
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    text-align: center;
-    /* box-shadow: 5px 10px 18px black; */
-    padding: 50px 0;
-    font-size: 30px; 
-  }
- 
-  .grid-container {
-    box-sizing: content-box;
-    display: grid;
-    grid-template-columns:auto auto auto;
-    grid-column-gap: 40px;
-    padding: 0px;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 3fr;
-    grid-auto-columns:auto;
-    text-align: center;
-    margin: 40px;
-  }
-  .jumbotron {
-    background-color: rgba(106, 5, 173, 0.3);
-    color:white;
-    text-shadow: 1px 1px 2px black;
-    }
-  a:hover{
-    color:plum !important;
-  }
-  .heading, h1 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color:white !important;
-    text-shadow: 1px 1px 2px rgb(56, 0, 88);
-  }
-  a{
-    color:white !important;
-    text-shadow: 1px 1px 2px black;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
-.card-title{
-  align-self: baseline;
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: rgba(66, 0, 92, 0.383);
+  box-shadow: 5px 5px 18px black;
+  text-shadow: 1px 1px 2px black;
+  color: white;
+  font-family: 'Franklin Gothic Medium', sans-serif;
 }
-.my-3{
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+  height: 0px;
+}
+
+.pastPosts {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: rgba(66, 0, 92, 0.383);
+  box-shadow: 5px 5px 18px gold;
+  margin-top: 130px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 10px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.btn {
+  background-color: rgba(94, 2, 136, 0.87);
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.card {
+  align-content: center;
+  background-color: rgba(66, 0, 92, 0.383);
+  box-shadow: 5px 5px 18px black;
+}
+
+.card-body {
+  align-content: left;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  background-color: rgba(29, 1, 46, 0.657);
+  box-shadow: 5px 5px 18px black;
+}
+
+.container-fluid {
+  background-color: rgba(82, 0, 129, 0.3);
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+
+  .row.content {
+    height: auto;
+  }
+}
+
+.item1,
+.item3 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: rgba(106, 5, 173, 0.3);
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
   box-shadow: 5px 10px 18px black;
 }
-.btn:focus,.btn:active {
+
+.item2 {
+  height: 400px;
+  /* background-color: rgba(254, 253, 255, 0.3); */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  /* box-shadow: 5px 10px 18px black; */
+  padding: 50px 0;
+  font-size: 30px;
+}
+
+.grid-container {
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 40px;
+  padding: 0px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 3fr;
+  grid-auto-columns: auto;
+  text-align: center;
+  margin: 40px;
+}
+
+.jumbotron {
+  background-color: rgba(106, 5, 173, 0.3);
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+a:hover {
+  color: plum !important;
+}
+
+.heading,
+h1 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: white !important;
+  text-shadow: 1px 1px 2px rgb(56, 0, 88);
+}
+
+a {
+  color: white !important;
+  text-shadow: 1px 1px 2px black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.card-title {
+  align-self: baseline;
+}
+
+.my-3 {
+  box-shadow: 5px 10px 18px black;
+}
+
+.btn:focus,
+.btn:active {
   outline: none !important;
   box-shadow: 5px 10px 18px black;
 }
-  .minibox {
-    height: 350px;
-    width: auto;
-  }
 
-  .rollIn{
-    animation-duration: 3s;
-    animation-delay: 0s;
-  }
-  .blue-text {
-    color:purple;
-    text-shadow: 1px 1px 2px blueviolet;  
-  }
-  .btn-basic:hover, .btn-basic:focus{
-    border: none !important;
-    outline: black;
-    background-color: gray;
-    color: white; 
-    text-shadow: 1px 1px 2px black; 
-  }
-.btn:hover, a:hover, h3:hover {
-    color:rgb(255, 230, 0);
-    text-shadow: 0px 1px 1.5px black;
-  } 
-  .bounceIn{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-left:100px;
-  }
-  .modal-body {
-    background-color: rgba(94, 2, 136, 0.87);
-    color: white;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
-    text-shadow: 0px 0px 2px rgb(0, 0, 0);
-    box-shadow:0px 1px 2px blueviolet;
-  }
-  h4 {
+.minibox {
+  height: 350px;
+  width: auto;
+}
+
+.rollIn {
+  animation-duration: 3s;
+  animation-delay: 0s;
+}
+
+.blue-text {
+  color: purple;
+  text-shadow: 1px 1px 2px blueviolet;
+}
+
+.btn-basic:hover,
+.btn-basic:focus {
+  border: none !important;
+  outline: black;
+  background-color: gray;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.btn:hover,
+a:hover,
+h3:hover {
+  color: rgb(255, 230, 0);
+  text-shadow: 0px 1px 1.5px black;
+}
+
+.bounceIn {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left: 100px;
+}
+
+.modal-body {
+  background-color: rgba(94, 2, 136, 0.87);
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-shadow: 0px 0px 2px rgb(0, 0, 0);
+  box-shadow: 0px 1px 2px blueviolet;
+}
+
+h4 {
   font-weight: 600 !important;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
-    color:rgba(71, 0, 104, 0.87);
-  }
- 
- 
- 
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgba(71, 0, 104, 0.87);
+}

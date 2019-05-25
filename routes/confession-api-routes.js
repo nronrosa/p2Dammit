@@ -1,5 +1,4 @@
 var confessionRouter = require("express").Router();
-// var confessionController = require("../controllers/confessionController");
 var confessionController = require("../controllers/confessionController");
 
 confessionRouter.route("/confessions")
